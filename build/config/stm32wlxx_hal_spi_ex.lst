@@ -1,0 +1,238 @@
+ARM GAS  /tmp/cczpjKgo.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32wlxx_hal_spi_ex.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c"
+  18              		.section	.text.HAL_SPIEx_FlushRxFifo,"ax",%progbits
+  19              		.align	1
+  20              		.global	HAL_SPIEx_FlushRxFifo
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	HAL_SPIEx_FlushRxFifo:
+  26              	.LVL0:
+  27              	.LFB844:
+   1:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /**
+   2:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   ******************************************************************************
+   3:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @file    stm32wlxx_hal_spi_ex.c
+   4:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @author  MCD Application Team
+   5:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @brief   Extended SPI HAL module driver.
+   6:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *          This file provides firmware functions to manage the following
+   7:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *          SPI peripheral extended functionalities :
+   8:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *           + IO operation functions
+   9:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *
+  10:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   ******************************************************************************
+  11:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @attention
+  12:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *
+  13:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * Copyright (c) 2020 STMicroelectronics.
+  14:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * All rights reserved.
+  15:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *
+  16:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  17:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * in the root directory of this software component.
+  18:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  19:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *
+  20:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   ******************************************************************************
+  21:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  22:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  23:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /* Includes ------------------------------------------------------------------*/
+  24:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** #include "stm32wlxx_hal.h"
+  25:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  26:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /** @addtogroup STM32WLxx_HAL_Driver
+  27:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @{
+  28:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  29:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  30:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /** @defgroup SPIEx SPIEx
+  31:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @brief SPI Extended HAL module driver
+ARM GAS  /tmp/cczpjKgo.s 			page 2
+
+
+  32:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @{
+  33:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  34:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** #ifdef HAL_SPI_MODULE_ENABLED
+  35:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  36:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /* Private typedef -----------------------------------------------------------*/
+  37:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /* Private defines -----------------------------------------------------------*/
+  38:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /** @defgroup SPIEx_Private_Constants SPIEx Private Constants
+  39:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @{
+  40:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  41:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** #define SPI_FIFO_SIZE       4UL
+  42:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /**
+  43:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @}
+  44:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  45:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  46:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /* Private macros ------------------------------------------------------------*/
+  47:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /* Private variables ---------------------------------------------------------*/
+  48:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /* Private function prototypes -----------------------------------------------*/
+  49:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /* Exported functions --------------------------------------------------------*/
+  50:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  51:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /** @defgroup SPIEx_Exported_Functions SPIEx Exported Functions
+  52:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @{
+  53:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  54:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  55:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /** @defgroup SPIEx_Exported_Functions_Group1 IO operation functions
+  56:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *  @brief   Data transfers functions
+  57:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *
+  58:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** @verbatim
+  59:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   ==============================================================================
+  60:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****                       ##### IO operation functions #####
+  61:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****  ===============================================================================
+  62:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****  [..]
+  63:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     This subsection provides a set of extended functions to manage the SPI
+  64:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     data transfers.
+  65:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  66:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     (#) Rx data flush function:
+  67:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****         (++) HAL_SPIEx_FlushRxFifo()
+  68:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  69:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** @endverbatim
+  70:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @{
+  71:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  72:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** 
+  73:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** /**
+  74:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @brief  Flush the RX fifo.
+  75:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @param  hspi pointer to a SPI_HandleTypeDef structure that contains
+  76:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   *               the configuration information for the specified SPI module.
+  77:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   * @retval HAL status
+  78:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   */
+  79:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** HAL_StatusTypeDef HAL_SPIEx_FlushRxFifo(const SPI_HandleTypeDef *hspi)
+  80:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** {
+  28              		.loc 1 80 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  81:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   __IO uint32_t tmpreg;
+  33              		.loc 1 81 3 view .LVU1
+  82:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   uint8_t  count = 0U;
+ARM GAS  /tmp/cczpjKgo.s 			page 3
+
+
+  34              		.loc 1 82 3 view .LVU2
+  83:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   while ((hspi->Instance->SR & SPI_FLAG_FRLVL) !=  SPI_FRLVL_EMPTY)
+  35              		.loc 1 83 3 view .LVU3
+  82:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   uint8_t  count = 0U;
+  36              		.loc 1 82 12 is_stmt 0 view .LVU4
+  37 0000 0023     		movs	r3, #0
+  38              	.LVL1:
+  39              		.loc 1 83 48 is_stmt 1 view .LVU5
+  40              		.loc 1 83 15 is_stmt 0 view .LVU6
+  41 0002 0268     		ldr	r2, [r0]
+  42              		.loc 1 83 25 view .LVU7
+  43 0004 9168     		ldr	r1, [r2, #8]
+  44              		.loc 1 83 48 view .LVU8
+  45 0006 11F4C06F 		tst	r1, #1536
+  46 000a 12D0     		beq	.L10
+  80:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   __IO uint32_t tmpreg;
+  47              		.loc 1 80 1 view .LVU9
+  48 000c 82B0     		sub	sp, sp, #8
+  49              	.LCFI0:
+  50              		.cfi_def_cfa_offset 8
+  51 000e 04E0     		b	.L4
+  52              	.L12:
+  53              		.loc 1 83 48 is_stmt 1 view .LVU10
+  54              		.loc 1 83 15 is_stmt 0 view .LVU11
+  55 0010 0268     		ldr	r2, [r0]
+  56              		.loc 1 83 25 view .LVU12
+  57 0012 9168     		ldr	r1, [r2, #8]
+  58              		.loc 1 83 48 view .LVU13
+  59 0014 11F4C06F 		tst	r1, #1536
+  60 0018 09D0     		beq	.L11
+  61              	.L4:
+  84:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   {
+  85:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     count++;
+  62              		.loc 1 85 5 is_stmt 1 view .LVU14
+  63              		.loc 1 85 10 is_stmt 0 view .LVU15
+  64 001a 0133     		adds	r3, r3, #1
+  65              	.LVL2:
+  66              		.loc 1 85 10 view .LVU16
+  67 001c DBB2     		uxtb	r3, r3
+  68              	.LVL3:
+  86:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     tmpreg = hspi->Instance->DR;
+  69              		.loc 1 86 5 is_stmt 1 view .LVU17
+  70              		.loc 1 86 28 is_stmt 0 view .LVU18
+  71 001e D268     		ldr	r2, [r2, #12]
+  72              		.loc 1 86 12 view .LVU19
+  73 0020 0192     		str	r2, [sp, #4]
+  87:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     UNUSED(tmpreg); /* To avoid GCC warning */
+  74              		.loc 1 87 5 is_stmt 1 view .LVU20
+  75 0022 019A     		ldr	r2, [sp, #4]
+  88:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     if (count == SPI_FIFO_SIZE)
+  76              		.loc 1 88 5 view .LVU21
+  77              		.loc 1 88 8 is_stmt 0 view .LVU22
+  78 0024 042B     		cmp	r3, #4
+  79 0026 F3D1     		bne	.L12
+  89:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     {
+  90:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****       return HAL_TIMEOUT;
+  80              		.loc 1 90 14 view .LVU23
+ARM GAS  /tmp/cczpjKgo.s 			page 4
+
+
+  81 0028 0320     		movs	r0, #3
+  82              	.LVL4:
+  83              	.L3:
+  91:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****     }
+  92:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   }
+  93:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c ****   return HAL_OK;
+  94:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** }
+  84              		.loc 1 94 1 view .LVU24
+  85 002a 02B0     		add	sp, sp, #8
+  86              	.LCFI1:
+  87              		.cfi_remember_state
+  88              		.cfi_def_cfa_offset 0
+  89              		@ sp needed
+  90 002c 7047     		bx	lr
+  91              	.LVL5:
+  92              	.L11:
+  93              	.LCFI2:
+  94              		.cfi_restore_state
+  93:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** }
+  95              		.loc 1 93 10 view .LVU25
+  96 002e 0020     		movs	r0, #0
+  97              	.LVL6:
+  93:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** }
+  98              		.loc 1 93 10 view .LVU26
+  99 0030 FBE7     		b	.L3
+ 100              	.LVL7:
+ 101              	.L10:
+ 102              	.LCFI3:
+ 103              		.cfi_def_cfa_offset 0
+  93:external/drivers/stm32wlxx/src/stm32wlxx_hal_spi_ex.c **** }
+ 104              		.loc 1 93 10 view .LVU27
+ 105 0032 0020     		movs	r0, #0
+ 106              	.LVL8:
+ 107              		.loc 1 94 1 view .LVU28
+ 108 0034 7047     		bx	lr
+ 109              		.cfi_endproc
+ 110              	.LFE844:
+ 112              		.text
+ 113              	.Letext0:
+ 114              		.file 2 "/usr/share/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/arm-none-eabi/include/machine
+ 115              		.file 3 "/usr/share/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/arm-none-eabi/include/sys/_st
+ 116              		.file 4 "external/drivers/cmsis/include/stm32wle5xx.h"
+ 117              		.file 5 "external/drivers/stm32wlxx/include/stm32wlxx_hal_def.h"
+ 118              		.file 6 "external/drivers/stm32wlxx/include/stm32wlxx_hal_dma.h"
+ 119              		.file 7 "external/drivers/stm32wlxx/include/stm32wlxx_hal_spi.h"
+ 120              		.file 8 "external/drivers/stm32wlxx/include/stm32wlxx_ll_dma.h"
+ARM GAS  /tmp/cczpjKgo.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32wlxx_hal_spi_ex.c
+     /tmp/cczpjKgo.s:19     .text.HAL_SPIEx_FlushRxFifo:00000000 $t
+     /tmp/cczpjKgo.s:25     .text.HAL_SPIEx_FlushRxFifo:00000000 HAL_SPIEx_FlushRxFifo
+
+NO UNDEFINED SYMBOLS

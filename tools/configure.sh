@@ -113,7 +113,7 @@ main() {
 
   sed -i "s/mkdir/mkdir \-p/" "${PROJDIR}/Makefile"
 
-  sed -i "s///g" "${PROJDIR}/Makefile"
+  sed -i "s///g" "${PROJDIR}/Makefile"
 
   for val in "${MIDDLEWARES[@]}"; do
     if [ "$val" = "fatfs" ]; then

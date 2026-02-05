@@ -1,0 +1,225 @@
+ARM GAS  /tmp/cczqwWbn.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "src/main.c"
+  18              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+  19              		.align	2
+  20              	.LC0:
+  21 0000 53746172 		.ascii	"Starting up...\000"
+  21      74696E67 
+  21      2075702E 
+  21      2E2E00
+  22              		.section	.text.main,"ax",%progbits
+  23              		.align	1
+  24              		.global	main
+  25              		.syntax unified
+  26              		.thumb
+  27              		.thumb_func
+  29              	main:
+  30              	.LFB847:
+   1:src/main.c    **** /* SYSTEM IMPORTS*/
+   2:src/main.c    **** #include "low_level/type_definitions.h"
+   3:src/main.c    **** 
+   4:src/main.c    **** /* HAL IMPORTS*/
+   5:src/main.c    **** #include "system/init.h"
+   6:src/main.c    **** #include "stm32wlxx_hal_gpio.h"
+   7:src/main.c    **** #include "stm32wlxx_hal_subghz.h"
+   8:src/main.c    **** #include "stm32wlxx_hal_tim.h"
+   9:src/main.c    **** #include "stm32wlxx_hal_uart.h"
+  10:src/main.c    **** 
+  11:src/main.c    **** /* DRIVER IMPORTS*/
+  12:src/main.c    **** // #include "drivers/bbpwm/bbpwm.h"
+  13:src/main.c    **** 
+  14:src/main.c    **** // uart initialization
+  15:src/main.c    **** UART_HandleTypeDef huart2;
+  16:src/main.c    **** 
+  17:src/main.c    **** int main(void) {
+  31              		.loc 1 17 16 view -0
+  32              		.cfi_startproc
+  33              		@ Volatile: function does not return.
+  34              		@ args = 0, pretend = 0, frame = 0
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36 0000 08B5     		push	{r3, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/cczqwWbn.s 			page 2
+
+
+  39              		.cfi_offset 3, -8
+  40              		.cfi_offset 14, -4
+  18:src/main.c    ****   /* ==================== Initialization Code ==================== */
+  19:src/main.c    ****   init(); // This should be the first line of code in the initialization code.
+  41              		.loc 1 19 3 view .LVU1
+  42 0002 FFF7FEFF 		bl	init
+  43              	.LVL0:
+  20:src/main.c    **** 
+  21:src/main.c    ****   printf("Starting up...");
+  44              		.loc 1 21 3 view .LVU2
+  45 0006 0B48     		ldr	r0, .L4
+  46 0008 FFF7FEFF 		bl	printf
+  47              	.LVL1:
+  48              	.L2:
+  22:src/main.c    ****   // Initialize timer
+  23:src/main.c    ****   // HAL_TIM_Base_Start(&htim1);
+  24:src/main.c    **** 
+  25:src/main.c    **** 
+  26:src/main.c    ****   /* ==================== Infinite While Loop ==================== */
+  27:src/main.c    ****   while (1) {
+  49              		.loc 1 27 3 view .LVU3
+  28:src/main.c    ****     // uint16_t count = htim1.Instance->CNT;
+  29:src/main.c    ****     // printf("%d\r\n", count);
+  30:src/main.c    **** 
+  31:src/main.c    ****     // Turn LED on
+  32:src/main.c    ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+  50              		.loc 1 32 5 view .LVU4
+  51 000c 0A4C     		ldr	r4, .L4+4
+  52 000e 0122     		movs	r2, #1
+  53 0010 4FF48051 		mov	r1, #4096
+  54 0014 2046     		mov	r0, r4
+  55 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  56              	.LVL2:
+  33:src/main.c    ****     HAL_Delay(100);
+  57              		.loc 1 33 5 view .LVU5
+  58 001a 6420     		movs	r0, #100
+  59 001c FFF7FEFF 		bl	HAL_Delay
+  60              	.LVL3:
+  34:src/main.c    ****     
+  35:src/main.c    ****     // Turn LED off
+  36:src/main.c    ****     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
+  61              		.loc 1 36 5 view .LVU6
+  62 0020 0022     		movs	r2, #0
+  63 0022 4FF48051 		mov	r1, #4096
+  64 0026 2046     		mov	r0, r4
+  65 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  66              	.LVL4:
+  37:src/main.c    ****     HAL_Delay(100);    
+  67              		.loc 1 37 5 discriminator 1 view .LVU7
+  68 002c 6420     		movs	r0, #100
+  69 002e FFF7FEFF 		bl	HAL_Delay
+  70              	.LVL5:
+  27:src/main.c    ****     // uint16_t count = htim1.Instance->CNT;
+  71              		.loc 1 27 9 view .LVU8
+  72 0032 EBE7     		b	.L2
+  73              	.L5:
+  74              		.align	2
+ARM GAS  /tmp/cczqwWbn.s 			page 3
+
+
+  75              	.L4:
+  76 0034 00000000 		.word	.LC0
+  77 0038 00040048 		.word	1207960576
+  78              		.cfi_endproc
+  79              	.LFE847:
+  81              		.section	.text._write,"ax",%progbits
+  82              		.align	1
+  83              		.global	_write
+  84              		.syntax unified
+  85              		.thumb
+  86              		.thumb_func
+  88              	_write:
+  89              	.LVL6:
+  90              	.LFB848:
+  38:src/main.c    ****   }
+  39:src/main.c    ****   return 0;
+  40:src/main.c    **** }
+  41:src/main.c    **** 
+  42:src/main.c    **** int _write(int file, char *ptr, int len) {
+  91              		.loc 1 42 42 view -0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		.loc 1 42 42 is_stmt 0 view .LVU10
+  96 0000 10B5     		push	{r4, lr}
+  97              	.LCFI1:
+  98              		.cfi_def_cfa_offset 8
+  99              		.cfi_offset 4, -8
+ 100              		.cfi_offset 14, -4
+ 101 0002 1446     		mov	r4, r2
+  43:src/main.c    ****   // This just defines what "p"
+  44:src/main.c    ****   HAL_UART_Transmit(&huart2, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+ 102              		.loc 1 44 3 is_stmt 1 view .LVU11
+ 103 0004 4FF0FF33 		mov	r3, #-1
+ 104 0008 92B2     		uxth	r2, r2
+ 105              	.LVL7:
+ 106              		.loc 1 44 3 is_stmt 0 view .LVU12
+ 107 000a 0248     		ldr	r0, .L8
+ 108              	.LVL8:
+ 109              		.loc 1 44 3 view .LVU13
+ 110 000c FFF7FEFF 		bl	HAL_UART_Transmit
+ 111              	.LVL9:
+  45:src/main.c    ****   return len;
+ 112              		.loc 1 45 3 is_stmt 1 view .LVU14
+  46:src/main.c    **** }...
+ 113              		.loc 1 46 1 is_stmt 0 view .LVU15
+ 114 0010 2046     		mov	r0, r4
+ 115 0012 10BD     		pop	{r4, pc}
+ 116              	.LVL10:
+ 117              	.L9:
+ 118              		.loc 1 46 1 view .LVU16
+ 119              		.align	2
+ 120              	.L8:
+ 121 0014 00000000 		.word	huart2
+ 122              		.cfi_endproc
+ 123              	.LFE848:
+ 125              		.global	huart2
+ARM GAS  /tmp/cczqwWbn.s 			page 4
+
+
+ 126              		.section	.bss.huart2,"aw",%nobits
+ 127              		.align	2
+ 130              	huart2:
+ 131 0000 00000000 		.space	148
+ 131      00000000 
+ 131      00000000 
+ 131      00000000 
+ 131      00000000 
+ 132              		.text
+ 133              	.Letext0:
+ 134              		.file 2 "/usr/share/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/arm-none-eabi/include/machine
+ 135              		.file 3 "/usr/share/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/arm-none-eabi/include/sys/_st
+ 136              		.file 4 "external/drivers/cmsis/include/stm32wle5xx.h"
+ 137              		.file 5 "external/drivers/stm32wlxx/include/stm32wlxx_hal_def.h"
+ 138              		.file 6 "external/drivers/stm32wlxx/include/stm32wlxx_hal_dma.h"
+ 139              		.file 7 "external/drivers/stm32wlxx/include/stm32wlxx_hal_gpio.h"
+ 140              		.file 8 "external/drivers/stm32wlxx/include/stm32wlxx_hal_uart.h"
+ 141              		.file 9 "external/drivers/stm32wlxx/include/stm32wlxx_hal.h"
+ 142              		.file 10 "/usr/share/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/arm-none-eabi/include/stdio.
+ 143              		.file 11 "external/drivers/stm32wlxx/include/stm32wlxx_ll_dma.h"
+ 144              		.file 12 "src/system/init.h"
+ARM GAS  /tmp/cczqwWbn.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+     /tmp/cczqwWbn.s:19     .rodata.main.str1.4:00000000 $d
+     /tmp/cczqwWbn.s:23     .text.main:00000000 $t
+     /tmp/cczqwWbn.s:29     .text.main:00000000 main
+     /tmp/cczqwWbn.s:76     .text.main:00000034 $d
+     /tmp/cczqwWbn.s:82     .text._write:00000000 $t
+     /tmp/cczqwWbn.s:88     .text._write:00000000 _write
+     /tmp/cczqwWbn.s:121    .text._write:00000014 $d
+     /tmp/cczqwWbn.s:130    .bss.huart2:00000000 huart2
+     /tmp/cczqwWbn.s:127    .bss.huart2:00000000 $d
+
+UNDEFINED SYMBOLS
+init
+printf
+HAL_GPIO_WritePin
+HAL_Delay
+HAL_UART_Transmit
